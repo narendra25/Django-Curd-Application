@@ -42,6 +42,7 @@
 
           <form action="insert/" method="post"> {% csrf_token %}
             <div class="form-group">
+              <label class="text-Black ">Enter Student Name:</label>
               <input
                 type="text"
                 class="form-control"
@@ -52,6 +53,7 @@
             </div>
 
             <div class="form-group">
+              <label class="text-Black mt-2">Enter Student Mail:</label>
               <input
                 type="email"
                 class="form-control mt-2"
@@ -61,6 +63,7 @@
               />
             </div>
             <div class="form-group">
+              <label class="text-Black mt-2">Enter Student Age:</label>
               <input
                 type="number"
                 class="form-control mt-2"
@@ -70,6 +73,7 @@
               />
 
               <div class="form-group">
+                <label class="text-Black mt-2">Enter Student Gender:</label>
                 <select id="gender" class="form-control" name="gender" required>
                   <option selected>Select Gender</option>
                   <option value="Male">Male</option>
