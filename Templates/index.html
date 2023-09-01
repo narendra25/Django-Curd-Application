@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -14,6 +15,7 @@
     />
 
     <title>CRUD MINI PROJECT</title>
+    
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -29,7 +31,7 @@
             Add Student Details
           </h2>
           <br />
-
+{% comment %}
           {% for message in messages %}
           <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
             <strong>{{ message }}</strong> 
@@ -38,11 +40,22 @@
             </button>
           </div>
           {% endfor %}
-
-
+{% endcomment %}
+<link rel="stylesheet" href="{% static 'css/style.css'%}" />
           <form action="insert/" method="post"> {% csrf_token %}
+
             <div class="form-group">
-              <label class="text-Black ">Enter Student Name:</label>
+              <label class="text-Black  required">Enter Student Roll Number:</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter the Student Roll Number"
+                name="roll"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label class="text-Black  required">Enter Student Name:</label>
               <input
                 type="text"
                 class="form-control"
@@ -53,7 +66,7 @@
             </div>
 
             <div class="form-group">
-              <label class="text-Black mt-2">Enter Student Mail:</label>
+              <label class="text-Black mt-2 required">Enter Student Mail:</label>
               <input
                 type="email"
                 class="form-control mt-2"
@@ -63,18 +76,21 @@
               />
             </div>
             <div class="form-group">
-              <label class="text-Black mt-2">Enter Student Age:</label>
+              <label class="text-Black mt-2 required">Enter Student Age</label>
               <input
                 type="number"
                 class="form-control mt-2"
                 placeholder="Enter the Student Age"
                 name="age"
+                min="10" max="50"
                 required
               />
+              
 
               <div class="form-group">
-                <label class="text-Black mt-2">Enter Student Gender:</label>
-                <select id="gender" class="form-control" name="gender" required>
+                <label class="text-Black mt-2 required">Enter Student Gender:</label>
+                <select type="button" class="form-control dropdown-toggle" name="gender" id="dropdownMenuOffset"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
                   <option selected>Select Gender</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
@@ -90,8 +106,12 @@
           </form>
         </div>
         <div class="col-md-8">
-
+          
         <h2 class="text-center text-white bg-dark p-3">Student Details</h2>
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" name="q" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-1 my-sm-0" type="submit" >Search</button>
+        </form>
   {% for message in messages %}
   <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
   <strong>{{message}}</strong> 
@@ -103,6 +123,7 @@
   <thead>
     <tr>
       <th scope="col">Id</th>
+      <th scope="col">RollNumber</th>
       <th scope="col">Name</th>
       <th scope="col">Email</th>
       <th scope="col">Age</th>
@@ -113,9 +134,10 @@
   </thead>
   <tbody>
 
-  {% for d in data %}
+  {% for d in page.object_list %}
     <tr>
       <th scope="row">{{d.id}}</th>
+      <td>{{d.rollnumber}}</td>
       <td>{{d.name}}</td>
       <td>{{d.email}}</td>
       <td>{{d.age}}</td>
@@ -128,7 +150,22 @@
 
   </tbody>
 </table>
-
+<div class="container">
+  <div class="row my-5">
+    <div class="col-md-4">
+      {% comment %} <p>page:{{page.number}}/{{page.paginator.num_page}}</p>{% endcomment %}
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    </ul>
+  </nav>
+</div>
+</div>
+</div>
 
         </div>
       </div>
