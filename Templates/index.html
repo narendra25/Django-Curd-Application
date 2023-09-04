@@ -47,7 +47,7 @@
             <div class="form-group">
               <label class="text-Black  required">Enter Student Roll Number:</label>
               <input
-                type="text"
+                type="number"
                 class="form-control"
                 placeholder="Enter the Student Roll Number"
                 name="roll"
@@ -82,10 +82,10 @@
                 class="form-control mt-2"
                 placeholder="Enter the Student Age"
                 name="age"
-                min="10" max="50"
+                min="10" 
+                max="15"
                 required
               />
-              
 
               <div class="form-group">
                 <label class="text-Black mt-2 required">Enter Student Gender:</label>
@@ -110,7 +110,7 @@
         <h2 class="text-center text-white bg-dark p-3">Student Details</h2>
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" name="q" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-1 my-sm-0" type="submit" >Search</button>
+          <button class="btn btn-outline-success my-1 my-sm-0 btn btn-info" type="submit" >Search</button>
         </form>
   {% for message in messages %}
   <div class="alert alert-{{message.tags}} alert-dismissible fade show" role="alert">
@@ -118,8 +118,9 @@
   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 {% endfor %}
-        
+<nav class="navbar navbar-expand-lg navbar-dark bg-white"> 
         <table class="table">
+          
   <thead>
     <tr>
       <th scope="col">Id</th>
@@ -149,7 +150,9 @@
 {% endfor %}
 
   </tbody>
+
 </table>
+</nav>
 <div class="container">
   <div class="row my-5">
     <div class="col-md-4">

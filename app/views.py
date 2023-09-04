@@ -37,13 +37,14 @@ def insertedData(request):
         Email=request.POST.get('email')
         Age=request.POST.get('age')
         Gender=request.POST.get('gender')
+        Artist=request.POST.get('artist')
     try:
         if Student.objects.get(email=Email):
             messages.warning(request,"Email is Already Taken")
             return redirect("/")
     except:
         pass
-    query=Student(rollnumber=RollNumber,name=Name,email=Email,age=Age,gender=Gender)
+        query=Student(rollnumber=RollNumber,name=Name,email=Email,age=Age,gender=Gender)
     messages.success(request,'Student Details Added Successfully')
     query.save()
     return redirect("/")
@@ -59,7 +60,7 @@ def update(request,id):
         Gender=request.POST['gender']
 
         edit=Student.objects.get(id=id)
-        edit.roll=RollNumber
+        edit.rollnumber=RollNumber
         edit.name=Name
         edit.email=Email
         edit.age=Age

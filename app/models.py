@@ -10,3 +10,8 @@ class Student(models.Model):
 
     def __str__(self):
         return self.name
+class Album(models.Model):
+    artist = models.ForeignKey(Student,default=1, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    release_date = models.DateField()
+    num_stars = models.IntegerField()
