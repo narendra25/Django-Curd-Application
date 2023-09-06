@@ -10,4 +10,12 @@ class Student(models.Model):
     def __str__(self):
         return self.name
        
+class StudentFamily(models.Model):
+    name=models.ForeignKey(Student,on_delete=models.CASCADE)
+    father_name=models.CharField(max_length=20)
+    mother_name=models.CharField(max_length=30)
+    emergency=models.IntegerField()
+    address=models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.father_name

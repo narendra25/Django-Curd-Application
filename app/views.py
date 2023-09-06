@@ -1,10 +1,10 @@
 from django.shortcuts import render,redirect
-from .models import *
+from .models import Student,StudentFamily
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.db.models import Q
 # Create your views here.
-
+#Student add Details
 def index(request):
     try:
         if 'q' in request.GET:
@@ -83,4 +83,53 @@ def delete(request,id):
     d.delete()
     messages.success(request,"Student Details Successfully deleted..")
     return redirect("/")
-   
+
+##Student Family Details
+def Family(request):
+    #try:
+        #if 'q' in request.GET:
+           # q = request.GET['q']
+        # data = Data.objects.filter(last_name__icontains=q)
+        #multiple_q = Q(Q(name__icontains=q) | Q(email__icontains=q))
+        #family = StudentFamily.objects.filter(multiple_q) 
+        #if not family:
+           # messages.warning(request,"No data found")
+        #else:
+            #pass
+    #except:
+       # pass
+
+        family=StudentFamily.objects.all()
+        print(family)
+        SF=Student.objects.all()
+        #page1=Paginator(family,10)
+        #page_list1=request.GET.get('page1')
+        #page1=page1.get_page(page_list1)
+        #context={'page1':page1,'SF':SF}
+        context={'SF':SF,'family':family}
+       
+        return render(request,'Student_Family_Details.html',context)
+
+def familyinsertedData(request):
+    SF=Student.objects.all()
+    print(SF)
+    if request.method=="POST":
+        
+        name_id=request.POST.get('name')
+        Name=Student.objects.get(name=name_id)
+        FatherName=request.POST.get('father_name')
+        MotherName=request.POST.get('mother_name')
+        EmergencyContact=request.POST.get('emergency')
+        Address=request.POST.get('address')
+    #try:
+        #if StudentFamily.objects.get(Name=Name):
+            #print(StudentFamily.objects.get(Name=Name))
+            #messages.warning(request,"Name is Already Taken")
+            #return redirect("sf/")
+    #except:
+        #pass
+        query1=StudentFamily(name=Name,father_name=FatherName,mother_name=MotherName,emergency=EmergencyContact,address=Address)
+    messages.success(request,'Student FamilyDetails Added Successfully')
+    query1.save()
+    return redirect("/sf")
+    return render(request,'Student_Family_Details.html')

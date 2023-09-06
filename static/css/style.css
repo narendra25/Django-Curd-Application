@@ -6,3 +6,7 @@
   body{
     background-image: url('../images/d.jpg');
   }
+  label{
+    font-style:italic;
+    font-family: Arial, Helvetica, sans-serif;
+  }

@@ -6,4 +6,6 @@ urlpatterns = [
     path('insert/',views.insertedData),
     path('update/<id>',views.update),
     path('delete/<id>',views.delete),
+    path('sf/',views.Family),
+    path('finsert/',views.familyinsertedData),
 ]
